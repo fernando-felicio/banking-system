@@ -34,7 +34,17 @@ public class Program {
 			holder.showResult();
 		}
 		
+		System.out.println("Enter a deposit value:");
+		double addValue = sc.nextDouble();
+		holder.increaseBalance(addValue);
 		
+		holder.showResult();
+		
+		System.out.println("Enter a withdraw value:");
+		double decreaseValue = sc.nextDouble();
+		holder.decreaseBalance(decreaseValue);
+		
+		holder.showResult();
 		
 		sc.close();
 		
