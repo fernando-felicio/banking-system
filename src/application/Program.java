@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import java.util.Locale;
 
-import entities.HolderAccount;
+import entities.Account;
 
 public class Program {
 	
@@ -13,38 +13,45 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		HolderAccount holder = new HolderAccount();
+		Account account;
+		
 		
 		System.out.println("Enter account number:");
-		holder.accNumber = sc.nextInt();
-		sc.nextLine();
+		int number = sc.nextInt();
 		
 		System.out.println("Enter account holder:");
-		holder.accHolder = sc.nextLine();
+		sc.nextLine();
+		String holder = sc.nextLine();
 		
 		
 		System.out.println("Is there an initial deposit? (y/n)");
-		String initialDeposit = sc.nextLine();
+		char response = sc.next().charAt(0);
 		
-		if (initialDeposit.equals("y")) {
+		if (response == 'y') {
 			System.out.println("Enter initial deposit value:");
-			holder.accBalance = sc.nextDouble();
-			holder.showResult();
+			double initialDeposit = sc.nextDouble();
+			account = new Account(number, holder, initialDeposit);
 		}else {
-			holder.showResult();
+			account = new Account(number, holder);
 		}
 		
-		System.out.println("Enter a deposit value:");
-		double addValue = sc.nextDouble();
-		holder.increaseBalance(addValue);
+		System.out.println();
+		System.out.println("Data:");
+		System.out.println(account);
 		
-		holder.showResult();
+		System.out.println();
+		System.out.println("Enter a deposit value: ");
+		double depositValue = sc.nextDouble();
+		account.deposit(depositValue);
+		System.out.println("Updated account data:");
+		System.out.println(account);
 		
-		System.out.println("Enter a withdraw value:");
-		double decreaseValue = sc.nextDouble();
-		holder.decreaseBalance(decreaseValue);
-		
-		holder.showResult();
+		System.out.println();
+		System.out.println("Enter a withdraw value: ");
+		double withdrawValue = sc.nextDouble();
+		account.withdraw(withdrawValue);
+		System.out.println("Updated data: ");
+		System.out.println(account);
 		
 		sc.close();
 		
