@@ -2,23 +2,52 @@ package entities;
 
 public class HolderAccount {
 	
-	public int accNumber;
-	public String accHolder;
-	public double accBalance;
+	private int accNumber;
+	private String accHolder;
+	private double accBalance;
 	
+	public HolderAccount (int accNumber, String accHolder) {
+		this.accNumber = accNumber;
+		this.accHolder = accHolder;
+	}
+	
+	public HolderAccount (int accNumber, String accHolder, double initialDeposit) {
+		this.accNumber = accNumber;
+		this.accHolder = accHolder;
+		deposit(initialDeposit);
+	}
+	
+		
+	public int getAccNumber() {
+		return accNumber;
+	}
+
+
+	public String getAccHolder() {
+		return accHolder;
+	}
+
+	public void setAccHolder(String accHolder) {
+		this.accHolder = accHolder;
+	}
+
+	public double getAccBalance() {
+		return accBalance;
+	}
+
+
 	public void showResult() {
 		System.out.println("Account Data:");
 		System.out.printf("Account %d, Holder: %s, Balance: R$%.2f%n", accNumber, accHolder, accBalance);
 	}
 	
-	public double increaseBalance(double addValue) {		
-		this.accBalance += addValue;
-		return accBalance;
+	public void deposit (double addValue) {
+		accBalance += addValue;
 	}
 	
-	public double decreaseBalance(double decreaseValue) {
-		this.accBalance -= decreaseValue + 5;
-		return accBalance;
+	public void withdraw (double decreaseValue) {
+		accBalance -= decreaseValue + 5.00;
 	}
-
+	
+	
 }
